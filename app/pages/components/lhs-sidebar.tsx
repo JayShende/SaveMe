@@ -1,8 +1,8 @@
-import TopBar from "./components/top-bar";
 import { auth } from "@/auth";
-const HomePage = async () => {
-  const session = await auth();
+import SideBar from "./sideBar";
 
+const LHSSideBar = async () => {
+  const session = await auth();
   if (!session?.user) {
     return (
       <div className="bg-emerald-100 w-full h-10 flex items-center justify-center text-sm text-red-500">
@@ -32,10 +32,8 @@ const HomePage = async () => {
     return;
   }
   return (
-    <>
-      <TopBar username={name} email={email} image={image} initials={initials} />
-    </>
+    <SideBar username={name} email={email} image={image} initials={initials} />
   );
 };
 
-export default HomePage;
+export default LHSSideBar;

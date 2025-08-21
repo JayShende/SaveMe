@@ -1,0 +1,14 @@
+Learnings
+
+1. Layout
+    - The LHS and RHS Layout Folder Structure
+    - Using the async Component inside the client Component
+
+2. Tailwind Learings
+    - using cn and conditionally rendering the Tailwind Classes
+        - components\lhs-sidebar.tsx Line No 49
+    - 
+
+3. New Learings 
+    - usePathName() hook Usage
+    - Diffrence Between <Link/>, useRedirect(), useNavigate()

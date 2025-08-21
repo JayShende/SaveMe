@@ -8,8 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { geistFont } from "@/fonts/fonts";
+import { cn } from "@/lib/utils";
 
-import { House, LogOut } from "lucide-react";
+import { House, LogOut,Bookmark } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 interface TopBarProps {
@@ -23,12 +25,15 @@ const TopBar = ({ username, email, image, initials }: TopBarProps) => {
   return (
     <div className=" w-full  ">
       <div className="flex justify-between items-center mx-10">
-        <div className="text-sm font-medium">Save Me</div>
+        <div className="flex items-center gap-x-2">
+            <span><Bookmark/></span>
+            <span className={cn("font-semibold text-xl",geistFont.className)}>Bookmark Me</span>
+        </div>
 
         <div className="flex items-center space-x-2">
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <Avatar className="w-12 h-12">
+              <Avatar className="w-10 h-10">
                 <AvatarImage
                   src={image || undefined}
                   alt={username || "user"}
