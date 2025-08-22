@@ -30,7 +30,7 @@ const StatsCard = ({ lable, value, icon: Icon, color }: cardsProps) => {
   const classes = colorClasses[color] || colorClasses["blue"]; // fallback
 
   return (
-    <Card className="w-60">
+    <Card>
       <CardContent className="flex gap-x-4">
         <div className={`${classes.bg} p-3 w-fit rounded-lg`}>
           <Icon className={`w-5 h-5 ${classes.text}`} />

@@ -12,15 +12,18 @@ export async function POST(req: NextRequest) {
 
   //   const userId = session?.user?.id;
   const body = await req.json();
+  console.log(body);
   const tags = body.tags;
   console.log(tags);
   const newLink = await client.links.create({
     data: {
+      title:body.title,
+      description:body.description,
       userId: body.userId,
       url: body.url,
-      type: body.type,
+      type: "WebUrl",
       tags: {
-        connect: tags.map((id:string) => ({ tagId: id })),
+        connect: tags.map((id: string) => ({ tagId: id })),
       },
     },
   });

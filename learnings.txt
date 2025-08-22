@@ -7,7 +7,7 @@ Learnings
 2. Tailwind Learings
     - using cn and conditionally rendering the Tailwind Classes
         - components\lhs-sidebar.tsx Line No 49
-    - 
+    - Better Usage of Grid and Cols System 
 
 3. New Learings 
     - usePathName() hook Usage

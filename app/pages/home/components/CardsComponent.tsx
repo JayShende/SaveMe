@@ -6,7 +6,7 @@ import { FaGlobe } from "react-icons/fa";
 
 const CardsCompoenent = () => {
   return (
-    <div className="flex gap-x-5 px-6 w-max-full flex-wrap">
+    <div className="grid grid-cols-4 gap-4 mx-6">
       <StatsCard
         lable="Total Links"
         value={12}

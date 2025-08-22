@@ -43,7 +43,7 @@ const SideBar = ({ username, email, image, initials }: SideBarProps) => {
     <div className="w-[280px] h-full border-r bg-white flex flex-col justify-between">
       <div>
         {/* Logo / Title */}
-        <div className="flex items-center gap-x-2 text-2xl border-b p-6 bg-amber-100">
+        <div className="flex items-center gap-x-2 text-2xl border-b p-6 ">
           <Bookmark className="text-emerald-600" />
           <span className={cn("font-semibold", geistFont.className)}>
             Bookmark Me

@@ -2,6 +2,7 @@ import TopBar from "../components/top-bar";
 import { auth } from "@/auth";
 import HeaderHomePage from "./components/header";
 import CardsCompoenent from "./components/CardsComponent";
+import SearchBarFilter from "./components/searchBar-Filter";
 const HomePage = async () => {
   const session = await auth();
   if (!session?.user) {
@@ -17,9 +18,10 @@ const HomePage = async () => {
     return;
   }
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex flex-col gap-y-3">
       <HeaderHomePage username={name} />
       <CardsCompoenent/>
+      <SearchBarFilter/>
     </div>
   );
 };
