@@ -3,13 +3,13 @@ import { auth } from "@/auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  // const session = await auth();
-  // if (!session?.user?.id) {
-  //   return NextResponse.json({
-  //     message: "Session Error",
-  //   });
-  // }
-  // const userId = session?.user?.id;
+  const session = await auth();
+  if (!session?.user?.id) {
+    return NextResponse.json({
+      message: "Session Error",
+    });
+  }
+  const userId = session?.user?.id;
 
   const body = await req.json();
   const nameLowercase = body.name.toLowerCase();
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
   const check = await client.tags.findFirst({
     where: {
-      ownerId: body.userId,
+      ownerId: userId,
       name: nameLowercase,
     },
   });
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
   const tag = await client.tags.create({
     data: {
       name: nameLowercase,
-      ownerId: body.userId,
+      ownerId: userId,
     },
   });
 
