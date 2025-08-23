@@ -15,6 +15,9 @@ export async function GET(req: NextRequest) {
     where: {
       userId: userId,
     },
+    include:{
+      tags:true
+    },
     orderBy: {
       createdAt: "desc",
     },

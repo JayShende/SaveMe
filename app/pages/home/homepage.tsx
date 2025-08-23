@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import HeaderHomePage from "./components/header";
 import CardsCompoenent from "./components/CardsComponent";
 import SearchBarFilter from "./components/searchBar-Filter";
+import HomePageContents from "./components/homepage-contents";
 const HomePage = async () => {
   const session = await auth();
   if (!session?.user) {
@@ -22,6 +23,7 @@ const HomePage = async () => {
       <HeaderHomePage username={name} />
       <CardsCompoenent/>
       <SearchBarFilter/>
+      <HomePageContents/>
     </div>
   );
 };

@@ -12,3 +12,7 @@ Learnings
 3. New Learings 
     - usePathName() hook Usage
     - Diffrence Between <Link/>, useRedirect(), useNavigate()
+
+https://x.com/rubenhume/status/1945861550226481573
+
+https://www.instagram.com/p/DNrnSTn2ND9/?utm_source=ig_web_copy_link

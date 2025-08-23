@@ -11,10 +11,8 @@ export interface linksProps {
   url: string;
   type: linkTypes;
   createdAt: Date;
-  tags:TagsProps
+  tags: TagsProps[];
   userId: string;
   title: string;
   description?: string;
 }
-
-
