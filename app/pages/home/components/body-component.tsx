@@ -6,6 +6,7 @@ import SearchBarFilter from "./searchBar-Filter";
 import SkeletonLoader from "./skeleton-loader";
 import StatsCardsCompoenent from "./CardsComponent";
 import { linksProps } from "@/app/types/link";
+import AddLink from "./add-link-component";
 
 const BodyComponent = () => {
   const fetchAllLinks = useFetchAllLinks();
@@ -48,11 +49,12 @@ const BodyComponent = () => {
     weburl_links_count
   }
   return (
-    <>
+    <div className="relative">
       <StatsCardsCompoenent {...statsData}  />
       <SearchBarFilter />
       <HomePageContents links={fetchAllLinks.data} />
-    </>
+      <AddLink/>
+    </div>
   );
 };
 
