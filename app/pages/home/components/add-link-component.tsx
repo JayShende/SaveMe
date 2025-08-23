@@ -10,8 +10,13 @@ import {
 import { MdAddCircleOutline } from "react-icons/md";
 import { IoAdd } from "react-icons/io5";
 import { useState, useEffect } from "react";
+import AddLinkForm from "./add-link-form";
 
-const AddLink = () => {
+interface AddLinkProps {
+  availableTags:  Array<{ tagId: string; name: string }>;
+}
+
+const AddLink = ({ availableTags }: AddLinkProps) => {
   const [showAnimations, setShowAnimations] = useState(true);
 
   useEffect(() => {
@@ -42,14 +47,12 @@ const AddLink = () => {
           )}
         </button>
       </DialogTrigger>
-      <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
-        <DialogHeader>
-          <DialogTitle>Add New Link</DialogTitle>
-          <DialogDescription>
-            Enter the details for your new bookmark link.
-          </DialogDescription>
-        </DialogHeader>
-        {/* Add your form content here */}
+      <DialogContent
+        className="max-w-4xl max-h-[90vh] overflow-y-auto"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
+        <DialogTitle>Tets</DialogTitle>
+        <AddLinkForm availableTags={availableTags} />
       </DialogContent>
     </Dialog>
   );

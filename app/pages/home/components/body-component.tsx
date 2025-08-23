@@ -24,36 +24,35 @@ const BodyComponent = () => {
     return <span>Error in fetching Links or Tags</span>;
   }
   let total_links_count = 0;
-  let twitter_links_count=0;
-  let instagram_links_count=0;
-  let weburl_links_count=0;
+  let twitter_links_count = 0;
+  let instagram_links_count = 0;
+  let weburl_links_count = 0;
 
-  fetchAllLinks.data.map((x:linksProps)=>{
-    const urlName=x.url.split("/");
+  fetchAllLinks.data.map((x: linksProps) => {
+    const urlName = x.url.split("/");
     console.log(urlName);
-    if(urlName[2]=="x.com"){
+    if (urlName[2] == "x.com") {
       twitter_links_count++;
-    }
-    else if(urlName[2]=="www.instagram.com"){
+    } else if (urlName[2] == "www.instagram.com") {
       instagram_links_count++;
-    }
-    else{
+    } else {
       weburl_links_count++;
     }
-  })
-  total_links_count=(twitter_links_count+instagram_links_count+weburl_links_count);
-  const statsData={
+  });
+  total_links_count =
+    twitter_links_count + instagram_links_count + weburl_links_count;
+  const statsData = {
     total_links_count,
     twitter_links_count,
     instagram_links_count,
-    weburl_links_count
-  }
+    weburl_links_count,
+  };
   return (
     <div className="relative">
-      <StatsCardsCompoenent {...statsData}  />
+      <StatsCardsCompoenent {...statsData} />
       <SearchBarFilter />
       <HomePageContents links={fetchAllLinks.data} />
-      <AddLink/>
+      <AddLink availableTags={getAllTags.data || []} />
     </div>
   );
 };

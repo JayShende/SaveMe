@@ -11,10 +11,14 @@ export async function POST(req: NextRequest) {
   }
 
   const userId = session?.user?.id;
+  console.log(userId);
   const body = await req.json();
   console.log(body);
   const tags = body.tags;
-  console.log(tags);
+
+  //
+
+  // console.log(tags);
   const newLink = await client.links.create({
     data: {
       title: body.title,

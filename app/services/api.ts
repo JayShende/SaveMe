@@ -10,7 +10,16 @@ export const fetchAllLinks = async () => {
   return response.data;
 };
 
-export const addLink = async (data: linksProps) => {
+// Interface for form submission data
+interface AddLinkFormData {
+  url: string;
+  type: "Twitter" | "Instagram" | "WebUrl";
+  title: string;
+  description?: string;
+  tags: string[]; // Tag IDs
+}
+
+export const addLink = async (data: AddLinkFormData) => {
   const response = await axios({
     method: "post",
     url: "api/v1/links/addLink",
