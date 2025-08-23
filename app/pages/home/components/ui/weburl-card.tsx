@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardAction,
@@ -15,9 +15,10 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FaCopy } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
+import { FaGlobe } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 
-interface InstagramPreviewProps {
+interface WebUrlCardProps {
   url: string;
   title: string;
   description?: string;
@@ -25,13 +26,13 @@ interface InstagramPreviewProps {
   createdAt: Date;
 }
 
-const InstagramPreview = ({
+const WebUrlCard = ({
   url,
   title,
   description,
   tags,
   createdAt,
-}: InstagramPreviewProps) => {
+}: WebUrlCardProps) => {
   const [clickCopy, setClickCopy] = useState(false);
 
   // Convert to Date object
@@ -47,20 +48,15 @@ const InstagramPreview = ({
   };
   const istString = date.toLocaleString("en-IN", options);
 
-  useEffect(() => {
-    // Instagram requires their embed.js script to render previews
-    if (!document.querySelector("#instagram-embed-script")) {
-      const script = document.createElement("script");
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      script.defer = true;
-      script.id = "instagram-embed-script";
-      document.body.appendChild(script);
-    } else {
-      // reprocess embeds when component updates
-      (window as any).instgrm?.Embeds?.process();
+  // Extract domain from URL for display
+  const getDomain = (url: string) => {
+    try {
+      const urlObj = new URL(url);
+      return urlObj.hostname;
+    } catch {
+      return url;
     }
-  }, [url]);
+  };
 
   return (
     <Card
@@ -104,21 +100,20 @@ const InstagramPreview = ({
 
       <CardContent className="p-0 overflow-hidden">
         <div className="w-full h-full">
-          <blockquote
-            className="instagram-media"
-            data-instgrm-permalink={url}
-            data-instgrm-version="14"
-            style={{
-              background: "#FFF",
-              border: "0",
-              borderRadius: "3px",
-              margin: "1px",
-              maxWidth: "540px",
-              minWidth: "326px",
-              padding: "0",
-              width: "100%",
-            }}
-          ></blockquote>
+          <div className="border rounded-lg p-4 bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+            <div className="flex items-center gap-3 mb-3">
+              <FaGlobe className="text-blue-600 text-xl" />
+              <div>
+                <div className="font-medium text-gray-900">
+                  {getDomain(url)}
+                </div>
+                <div className="text-sm text-gray-500 truncate">{url}</div>
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 line-clamp-3">
+              {description || "Click to visit this website"}
+            </div>
+          </div>
         </div>
       </CardContent>
 
@@ -146,4 +141,4 @@ const InstagramPreview = ({
   );
 };
 
-export default InstagramPreview;
+export default WebUrlCard;

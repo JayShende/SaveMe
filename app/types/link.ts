@@ -1,11 +1,10 @@
 import { TagsProps } from "./tags";
 
 export enum linkTypes {
-  Twitter,
-  Instagram,
-  WebUrl,
+  Twitter = "Twitter",
+  Instagram = "Instagram", 
+  WebUrl = "WebUrl"
 }
-
 export interface linksProps {
   linkId: string;
   url: string;
