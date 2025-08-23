@@ -4,6 +4,7 @@ import HeaderHomePage from "./components/header";
 import CardsCompoenent from "./components/CardsComponent";
 import SearchBarFilter from "./components/searchBar-Filter";
 import HomePageContents from "./components/homepage-contents";
+import BodyComponent from "./components/body-component";
 const HomePage = async () => {
   const session = await auth();
   if (!session?.user) {
@@ -21,9 +22,8 @@ const HomePage = async () => {
   return (
     <div className="w-full h-full flex flex-col gap-y-3">
       <HeaderHomePage username={name} />
-      <CardsCompoenent/>
-      <SearchBarFilter/>
-      <HomePageContents/>
+
+      <BodyComponent />
     </div>
   );
 };

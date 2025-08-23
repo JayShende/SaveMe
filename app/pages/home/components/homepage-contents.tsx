@@ -1,24 +1,10 @@
-"use client";
-
-import { useFetchAllLinks, useGetAllTags } from "@/app/services/queries";
 import LinkCards from "./ui/tweet-card";
 import { linksProps } from "@/app/types/link";
-import SkeletonLoader from "./skeleton-loader";
 
-const HomePageContents = () => {
-  const fetchAllLinks = useFetchAllLinks();
-  const getAllTags = useGetAllTags();
-
-  if (fetchAllLinks.isPending || getAllTags.isPending) {
-    return <SkeletonLoader/>
-  }
-
-  if (fetchAllLinks.isError || fetchAllLinks.isError) {
-    return <span>Error in fetching Links or Tags</span>;
-  }
+const HomePageContents = ({ links }: { links: linksProps[] }) => {
   return (
     <div className="grid grid-cols-3 gap-3 mx-6 isolate">
-      {fetchAllLinks.data.map((x: linksProps) => (
+      {links.map((x: linksProps) => (
         <div key={x.linkId} className="isolate will-change-auto">
           <LinkCards
             linkId={x.linkId}
