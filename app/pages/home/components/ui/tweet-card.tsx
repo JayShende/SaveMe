@@ -9,6 +9,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { dmSansFont, openSansFont, robotoMonoFont } from "@/fonts/fonts";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -20,6 +31,7 @@ import Link from "next/link";
 import { useState } from "react";
 import InstagramPreview from "./instagram-card";
 import WebUrlCard from "./weburl-card";
+import RemoveCard from "./remove-card";
 
 const LinkCards = (props: linksProps) => {
   // Convert to Date object
@@ -96,9 +108,7 @@ const LinkCards = (props: linksProps) => {
               )}
             </button>
 
-            <button className="p-2 rounded-full bg-red-100 hover:bg-red-200 text-red-600 hover:text-red-700 transition-all duration-200 group/btn">
-              <MdDelete className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
-            </button>
+            <RemoveCard />
           </div>
         </CardHeader>
 
