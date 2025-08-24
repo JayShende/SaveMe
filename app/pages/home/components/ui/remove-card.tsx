@@ -11,20 +11,22 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { MdDelete } from "react-icons/md";
+import { toast } from "sonner";
 
 interface RemoveCardProps {
   linkId: string;
 }
 
-const RemoveCard = ({ linkId }: RemoveCardProps) => {
+const RemoveCard =  ({ linkId }: RemoveCardProps) => {
   const deleteCardMutation = useDeleteLink();
-
-  function onDelete() {
+  async function onDelete() {
     const data = {
       linkId: linkId,
     };
-    deleteCardMutation.mutateAsync(data);
+    await deleteCardMutation.mutateAsync(data);
+    toast.success("Link Deleted successfully!");
   }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -42,7 +44,7 @@ const RemoveCard = ({ linkId }: RemoveCardProps) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction  onClick={onDelete}>Delete</AlertDialogAction>
+          <AlertDialogAction onClick={onDelete}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

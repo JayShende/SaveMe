@@ -32,7 +32,7 @@ import {
   FaTwitter,
   FaInstagram,
 } from "react-icons/fa";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import z from "zod";
 import { useAddLink, useCreateTag } from "@/app/services/mutations";
 import { cn } from "@/lib/utils";
@@ -40,12 +40,13 @@ import { geistFont, interFont } from "@/fonts/fonts";
 
 interface AddLinkFormProps {
   availableTags: Array<{ tagId: string; name: string }>;
-  toggleDialogClose:Dispatch<SetStateAction<boolean>>
+  toggleDialogClose: Dispatch<SetStateAction<boolean>>;
 }
 
-const AddLinkForm = ({ availableTags,
-  toggleDialogClose
- }: AddLinkFormProps) => {
+const AddLinkForm = ({
+  availableTags,
+  toggleDialogClose,
+}: AddLinkFormProps) => {
   const [selectedTags, setSelectedTags] = useState<
     Array<{ tagId: string; name: string }>
   >([]);
@@ -61,6 +62,39 @@ const AddLinkForm = ({ availableTags,
       tags: [],
     },
   });
+
+  // Function to detect bookmark type from URL
+  const detectBookmarkType = (url: string): string => {
+    if (!url) return "WebUrl";
+
+    try {
+      const urlObj = new URL(url);
+      const hostname = urlObj.hostname.toLowerCase();
+
+      if (hostname === "x.com" || hostname === "twitter.com") {
+        return "Twitter";
+      } else if (
+        hostname === "www.instagram.com" ||
+        hostname === "instagram.com"
+      ) {
+        return "Instagram";
+      } else {
+        return "WebUrl";
+      }
+    } catch {
+      return "WebUrl";
+    }
+  };
+
+  // Watch for URL changes and auto-detect type
+  const watchedUrl = form.watch("url");
+
+  useEffect(() => {
+    if (watchedUrl) {
+      const detectedType = detectBookmarkType(watchedUrl);
+      form.setValue("type", detectedType as "Twitter" | "Instagram" | "WebUrl");
+    }
+  }, [watchedUrl, form]);
 
   const addTag = (tag: { tagId: string; name: string }) => {
     if (
@@ -125,7 +159,7 @@ const AddLinkForm = ({ availableTags,
     try {
       console.log(values);
       await addBookmarMutataion.mutateAsync(values);
-      toggleDialogClose(false)
+      toggleDialogClose(false);
       toast.success("Link added successfully!");
       form.reset();
       setSelectedTags([]);
@@ -211,12 +245,45 @@ const AddLinkForm = ({ availableTags,
                       Bookmark URL
                     </FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="https://example.com"
-                        className="h-10 md:h-12 text-sm md:text-base border-2 border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-all duration-200 rounded-lg"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          placeholder="https://example.com"
+                          className="h-10 md:h-12 text-sm md:text-base border-2 border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-all duration-200 rounded-lg pr-20"
+                          {...field}
+                        />
+                      </div>
                     </FormControl>
+                    {watchedUrl && (
+                      <FormDescription>
+                        <div className="flex gap-x-2">
+                          {watchedUrl && (
+                            <div className="">
+                              <Badge
+                                variant="secondary"
+                                className={cn(
+                                  "text-xs px-2 py-1",
+                                  detectBookmarkType(watchedUrl) ===
+                                    "Twitter" &&
+                                    "bg-blue-100 text-blue-700 border-blue-200",
+                                  detectBookmarkType(watchedUrl) ===
+                                    "Instagram" &&
+                                    "bg-pink-100 text-pink-700 border-pink-200",
+                                  detectBookmarkType(watchedUrl) === "WebUrl" &&
+                                    "bg-green-100 text-green-700 border-green-200"
+                                )}
+                              >
+                                {detectBookmarkType(watchedUrl)}
+                              </Badge>
+                            </div>
+                          )}
+                          <div className="text-xs text-emerald-600 flex items-center gap-2 ">
+                            <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+                            Automatically detected as{" "}
+                            {detectBookmarkType(watchedUrl)} bookmark
+                          </div>
+                        </div>
+                      </FormDescription>
+                    )}
                     <FormMessage />
                   </FormItem>
                 )}

@@ -7,7 +7,7 @@ export function useFetchAllLinks() {
   return useQuery({
     queryKey: ["Get_Links"],
     queryFn: fetchAllLinks,
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
   });
 }
 
@@ -15,6 +15,6 @@ export function useGetAllTags() {
   return useQuery({
     queryKey: ["Get_Tags"],
     queryFn: getAllTags,
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
   });
 }
