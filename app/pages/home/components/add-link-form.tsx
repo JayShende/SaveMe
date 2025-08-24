@@ -35,6 +35,8 @@ import {
 import { useState } from "react";
 import z from "zod";
 import { useAddLink, useCreateTag } from "@/app/services/mutations";
+import { cn } from "@/lib/utils";
+import { geistFont, interFont } from "@/fonts/fonts";
 
 interface AddLinkFormProps {
   availableTags: Array<{ tagId: string; name: string }>;
@@ -131,9 +133,19 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
-      <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50">
+      <Card
+        className={cn(
+          "border-0 ",
+          interFont.className
+        )}
+      >
         <CardHeader className="text-center pb-6">
-          <CardTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+          <CardTitle
+            className={cn(
+              "text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent",
+              geistFont.className
+            )}
+          >
             Add New Bookmark
           </CardTitle>
           <p className="text-gray-600 mt-2 text-sm md:text-base">
@@ -373,7 +385,7 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
               <div className="pt-4 md:pt-6">
                 <Button
                   type="submit"
-                  className="w-full h-10 md:h-12 text-base md:text-lg font-semibold bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-lg transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                  className="w-full h-10 md:h-12 text-base md:text-lg font-semibold bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white rounded-lg transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
                 >
                   Add Bookmark
                 </Button>

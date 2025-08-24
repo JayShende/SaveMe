@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -39,11 +38,10 @@ const InstagramPreview = ({
   const options: Intl.DateTimeFormatOptions = {
     timeZone: "Asia/Kolkata",
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit",
   };
   const istString = date.toLocaleString("en-IN", options);
 
@@ -63,25 +61,44 @@ const InstagramPreview = ({
   }, [url]);
 
   return (
-    <Card
-      className="shadow-[0_3px_10px_rgb(0,0,0,0.2)] h-fit overflow-hidden isolate will-change-auto"
-      style={{ contain: "layout paint" }}
-    >
-      <CardHeader>
-        <CardTitle
-          className={cn("text-lg font-semibold", dmSansFont.className)}
-        >
-          {title}
-        </CardTitle>
-        <CardDescription className={cn("font-medium", openSansFont.className)}>
-          {description}
-        </CardDescription>
-        <CardAction className="flex flex-row gap-4 text-lg">
-          <a href={url} target="_blank">
-            <FaExternalLinkAlt className="text-gray-600 hover:cursor-pointer hover:text-gray-800 transition-all duration-200" />
+    <Card className="group relative h-[500px] bg-gradient-to-br from-white to-gray-50 border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-50/30 to-orange-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      <CardHeader className="relative z-10 pb-4">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex-1 min-w-0">
+            <CardTitle
+              className={cn(
+                "text-lg font-bold text-gray-900 line-clamp-2 leading-tight",
+                dmSansFont.className
+              )}
+            >
+              {title}
+            </CardTitle>
+            <CardDescription
+              className={cn(
+                "text-sm text-gray-600 mt-2 line-clamp-2 leading-relaxed",
+                openSansFont.className
+              )}
+            >
+              {description}
+            </CardDescription>
+          </div>
+        </div>
+
+        {/* Action buttons */}
+        <div className="flex items-center gap-3 pt-2">
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-600 hover:text-pink-700 transition-all duration-200 group/btn"
+          >
+            <FaExternalLinkAlt className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
           </a>
 
-          <div
+          <button
             onClick={() => {
               navigator.clipboard.writeText(url);
               setClickCopy(true);
@@ -89,21 +106,23 @@ const InstagramPreview = ({
                 setClickCopy(false);
               }, 1000);
             }}
+            className="p-2 rounded-full bg-green-100 hover:bg-green-200 text-green-600 hover:text-green-700 transition-all duration-200 group/btn"
           >
             {clickCopy ? (
-              <MdOutlineDone className="text-gray-600 hover:text-gray-800 hover:cursor-pointer transition-all duration-200" />
+              <MdOutlineDone className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
             ) : (
-              <FaCopy className="text-gray-600 hover:text-gray-800 hover:cursor-pointer transition-all duration-200" />
+              <FaCopy className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
             )}
-          </div>
-          <div>
-            <MdDelete className="text-red-500 hover:text-red-800 hover:cursor-pointer transition-all duration-200" />
-          </div>
-        </CardAction>
+          </button>
+
+          <button className="p-2 rounded-full bg-red-100 hover:bg-red-200 text-red-600 hover:text-red-700 transition-all duration-200 group/btn">
+            <MdDelete className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
+          </button>
+        </div>
       </CardHeader>
 
-      <CardContent className="p-0 overflow-hidden">
-        <div className="w-full h-full">
+      <CardContent className="relative z-10 p-0 flex-1 min-h-0">
+        <div className="w-full h-full rounded-xl overflow-hidden bg-white shadow-sm">
           <blockquote
             className="instagram-media"
             data-instgrm-permalink={url}
@@ -111,35 +130,45 @@ const InstagramPreview = ({
             style={{
               background: "#FFF",
               border: "0",
-              borderRadius: "3px",
-              margin: "1px",
-              maxWidth: "540px",
-              minWidth: "326px",
+              borderRadius: "12px",
+              margin: "0",
+              maxWidth: "100%",
+              minWidth: "100%",
               padding: "0",
               width: "100%",
+              height: "100%",
             }}
           ></blockquote>
         </div>
       </CardContent>
 
-      <CardFooter className="flex flex-col">
-        <div
-          className={cn(
-            "text-gray-700 text-sm flex gap-x-1",
-            robotoMonoFont.className
-          )}
-        >
-          {tags.map((x) => (
-            <span key={x.name}>#{x.name}</span>
-          ))}
-        </div>
-        <div
-          className={cn(
-            "text-sm text-gray-800 font-semibold",
-            openSansFont.className
-          )}
-        >
-          {istString}
+      <CardFooter className="relative z-10 pt-4 border-t border-gray-100 bg-gradient-to-r from-gray-50/50 to-transparent">
+        <div className="w-full">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-3">
+            {tags.map((tag) => (
+              <span
+                key={tag.name}
+                className={cn(
+                  "px-3 py-1 text-xs font-medium bg-pink-100 text-pink-700 rounded-full border border-pink-200 hover:bg-pink-200 transition-colors duration-200",
+                  robotoMonoFont.className
+                )}
+              >
+                #{tag.name}
+              </span>
+            ))}
+          </div>
+
+          {/* Timestamp */}
+          <div
+            className={cn(
+              "text-xs text-gray-500 font-medium flex items-center gap-2",
+              openSansFont.className
+            )}
+          >
+            <div className="w-2 h-2 bg-gray-300 rounded-full" />
+            {istString}
+          </div>
         </div>
       </CardFooter>
     </Card>

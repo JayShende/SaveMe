@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import AddLinkForm from "./add-link-form";
 
 interface AddLinkProps {
-  availableTags:  Array<{ tagId: string; name: string }>;
+  availableTags: Array<{ tagId: string; name: string }>;
 }
 
 const AddLink = ({ availableTags }: AddLinkProps) => {
@@ -30,7 +30,7 @@ const AddLink = ({ availableTags }: AddLinkProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-110 hover:rotate-12 focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2 shadow-lg hover:shadow-xl animate-pulse hover:animate-none group">
+        <button className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-110 hover:rotate-12 focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2 shadow-lg hover:shadow-xl animate-pulse hover:animate-none group z-50">
           {/* Pulse ring effect - only show for 5 seconds */}
           {showAnimations && (
             <div className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-20"></div>
@@ -51,7 +51,7 @@ const AddLink = ({ availableTags }: AddLinkProps) => {
         className="max-w-4xl max-h-[90vh] overflow-y-auto"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
-        <DialogTitle>Tets</DialogTitle>
+        <DialogTitle className="hidden">Tets</DialogTitle>
         <AddLinkForm availableTags={availableTags} />
       </DialogContent>
     </Dialog>
