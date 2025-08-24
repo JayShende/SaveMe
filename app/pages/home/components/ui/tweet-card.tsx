@@ -108,7 +108,7 @@ const LinkCards = (props: linksProps) => {
               )}
             </button>
 
-            <RemoveCard />
+            <RemoveCard linkId={props.linkId} />
           </div>
         </CardHeader>
 
@@ -160,6 +160,7 @@ const LinkCards = (props: linksProps) => {
         description={props.description}
         tags={props.tags}
         createdAt={props.createdAt}
+        linkId={props.linkId}
       />
     );
   } else if (props.type === linkTypes.WebUrl) {
@@ -170,6 +171,7 @@ const LinkCards = (props: linksProps) => {
         description={props.description}
         tags={props.tags}
         createdAt={props.createdAt}
+        linkId={props.linkId}
       />
     );
   } else {

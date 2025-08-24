@@ -59,7 +59,8 @@ export const deleteLink=async(data:deleteLinkInterface)=>{
 
   const response=await axios({
     method:"post",
-    url:"api/v1/links/deleteLinks"
+    url:"api/v1/links/deleteLinks",
+    data:data
   });
 
   return response.data;

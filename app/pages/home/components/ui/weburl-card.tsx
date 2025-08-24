@@ -16,6 +16,7 @@ import { FaCopy } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { FaGlobe } from "react-icons/fa";
 import { cn } from "@/lib/utils";
+import RemoveCard from "./remove-card";
 
 interface WebUrlCardProps {
   url: string;
@@ -23,6 +24,7 @@ interface WebUrlCardProps {
   description?: string;
   tags: Array<{ name: string }>;
   createdAt: Date;
+  linkId: string;
 }
 
 const WebUrlCard = ({
@@ -31,6 +33,7 @@ const WebUrlCard = ({
   description,
   tags,
   createdAt,
+  linkId,
 }: WebUrlCardProps) => {
   const [clickCopy, setClickCopy] = useState(false);
 
@@ -111,9 +114,7 @@ const WebUrlCard = ({
             )}
           </button>
 
-          <button className="p-2 rounded-full bg-red-100 hover:bg-red-200 text-red-600 hover:text-red-700 transition-all duration-200 group/btn">
-            <MdDelete className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
-          </button>
+          <RemoveCard linkId={linkId} />
         </div>
       </CardHeader>
 

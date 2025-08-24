@@ -15,6 +15,7 @@ import { MdDelete } from "react-icons/md";
 import { FaCopy } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { cn } from "@/lib/utils";
+import RemoveCard from "./remove-card";
 
 interface InstagramPreviewProps {
   url: string;
@@ -22,6 +23,7 @@ interface InstagramPreviewProps {
   description?: string;
   tags: Array<{ name: string }>;
   createdAt: Date;
+  linkId: string;
 }
 
 const InstagramPreview = ({
@@ -30,6 +32,7 @@ const InstagramPreview = ({
   description,
   tags,
   createdAt,
+  linkId
 }: InstagramPreviewProps) => {
   const [clickCopy, setClickCopy] = useState(false);
 
@@ -115,9 +118,7 @@ const InstagramPreview = ({
             )}
           </button>
 
-          <button className="p-2 rounded-full bg-red-100 hover:bg-red-200 text-red-600 hover:text-red-700 transition-all duration-200 group/btn">
-            <MdDelete className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
-          </button>
+          <RemoveCard linkId={linkId} />
         </div>
       </CardHeader>
 

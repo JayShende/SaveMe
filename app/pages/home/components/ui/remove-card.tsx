@@ -1,3 +1,4 @@
+import { useDeleteLink } from "@/app/services/mutations";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,7 +12,20 @@ import {
 } from "@/components/ui/alert-dialog";
 import { MdDelete } from "react-icons/md";
 
-const RemoveCard = () => {
+interface RemoveCardProps {
+  linkId: string;
+}
+
+const RemoveCard = ({ linkId }: RemoveCardProps) => {
+  const deleteCardMutation = useDeleteLink();
+
+  function onDelete() {
+    const data = {
+      linkId: linkId,
+    };
+    console.log(data);
+    deleteCardMutation.mutateAsync(data);
+  }
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -29,7 +43,7 @@ const RemoveCard = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Delete</AlertDialogAction>
+          <AlertDialogAction  onClick={onDelete}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

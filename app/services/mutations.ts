@@ -77,7 +77,7 @@ export function useDeleteLink() {
       }
 
       await queryClient.invalidateQueries({
-        queryKey: ["Get_Tags"],
+        queryKey: ["Get_Links"],
       });
     },
   });
