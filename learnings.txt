@@ -17,3 +17,9 @@ Learnings
   - usage of
     - useIsFetching(); // number of active queries
     - useIsMutating(); // number of active mutations
+
+5. Functionality
+    - How the Search is Working in FE1
+    - Types of Search
+        - with backend (includes api and all)
+        - Frontend Side Search
