@@ -50,3 +50,17 @@ export const getAllTags = async () => {
 
   return response.data;
 };
+
+export interface deleteLinkInterface{
+  linkId:string
+}
+
+export const deleteLink=async(data:deleteLinkInterface)=>{
+
+  const response=await axios({
+    method:"post",
+    url:"api/v1/links/deleteLinks"
+  });
+
+  return response.data;
+}

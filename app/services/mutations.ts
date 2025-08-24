@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { linksProps } from "../types/link";
-import { addLink, createTag } from "./api";
+import { addLink, createTag, deleteLink, deleteLinkInterface } from "./api";
 
 // Interface for form submission data
 interface AddLinkFormData {
@@ -40,6 +40,30 @@ export function useCreateTag() {
 
   return useMutation({
     mutationFn: (data: createTag) => createTag(data),
+    onMutate: () => {
+      console.log("Mutatted");
+    },
+    onSuccess: () => {
+      console.log("Successfull");
+    },
+
+    onSettled: async (_, error) => {
+      if (error) {
+        console.log("Some Error ");
+      }
+
+      await queryClient.invalidateQueries({
+        queryKey: ["Get_Tags"],
+      });
+    },
+  });
+}
+
+export function useDeleteLink() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: deleteLinkInterface) => deleteLink(data),
     onMutate: () => {
       console.log("Mutatted");
     },
