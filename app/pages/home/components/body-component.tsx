@@ -7,12 +7,17 @@ import SkeletonLoader from "./skeleton-loader";
 import StatsCardsCompoenent from "./CardsComponent";
 import { linksProps } from "@/app/types/link";
 import AddLink from "./add-link-component";
+import { useIsFetching, useIsMutating } from "@tanstack/react-query";
 
 const BodyComponent = () => {
+  const isFetching = useIsFetching(); // number of active queries
+  const isMutating = useIsMutating(); // number of active mutations
+
+  const isLoading = isFetching + isMutating > 0;
+
   const fetchAllLinks = useFetchAllLinks();
   const getAllTags = useGetAllTags();
-
-  if (fetchAllLinks.isPending || getAllTags.isPending) {
+  if (fetchAllLinks.isPending || getAllTags.isPending || isLoading) {
     return (
       <>
         <SkeletonLoader />

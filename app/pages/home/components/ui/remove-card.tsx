@@ -23,7 +23,6 @@ const RemoveCard = ({ linkId }: RemoveCardProps) => {
     const data = {
       linkId: linkId,
     };
-    console.log(data);
     deleteCardMutation.mutateAsync(data);
   }
   return (

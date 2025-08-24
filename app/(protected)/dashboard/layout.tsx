@@ -6,6 +6,8 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  
+  
   return (
     <div className="w-screen h-screen flex gap-2">
       {/* LHS Sidebar */}
