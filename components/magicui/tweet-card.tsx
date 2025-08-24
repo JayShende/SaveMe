@@ -8,7 +8,7 @@ import {
 import { getTweet, type Tweet } from "react-tweet/api";
 
 import { cn } from "@/lib/utils";
-import { openSansFont } from "@/fonts/fonts";
+import { interFont } from "@/fonts/fonts";
 
 interface TwitterIconProps {
   className?: string;
@@ -168,7 +168,7 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
           return (
             <span
               key={idx}
-              className={cn("text-sm font-normal",openSansFont.className)}
+              className={cn("text-sm font-normal",interFont.className)}
               dangerouslySetInnerHTML={{ __html: entity.text }}
             />
           );

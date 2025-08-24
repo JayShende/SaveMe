@@ -32,7 +32,7 @@ import {
   FaTwitter,
   FaInstagram,
 } from "react-icons/fa";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import z from "zod";
 import { useAddLink, useCreateTag } from "@/app/services/mutations";
 import { cn } from "@/lib/utils";
@@ -40,9 +40,12 @@ import { geistFont, interFont } from "@/fonts/fonts";
 
 interface AddLinkFormProps {
   availableTags: Array<{ tagId: string; name: string }>;
+  toggleDialogClose:Dispatch<SetStateAction<boolean>>
 }
 
-const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
+const AddLinkForm = ({ availableTags,
+  toggleDialogClose
+ }: AddLinkFormProps) => {
   const [selectedTags, setSelectedTags] = useState<
     Array<{ tagId: string; name: string }>
   >([]);
@@ -88,7 +91,7 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
 
   const addTagsMutation = useCreateTag();
 
-  const handleTagInputKeyPress = (e: React.KeyboardEvent) => {
+  const handleTagInputKeyPress = async (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && tagInput.trim()) {
       e.preventDefault();
       // Find tag by name from available tags
@@ -107,7 +110,7 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
         const dataTag = {
           name: tagInput.trim(),
         };
-        addTagsMutation.mutate(dataTag);
+        await addTagsMutation.mutateAsync(dataTag);
         toast.success(
           `Tag "${tagInput.trim()}" Created. Please select from available tags.`
         );
@@ -118,10 +121,11 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
 
   const addBookmarMutataion = useAddLink();
 
-  function onSubmitFun(values: z.infer<typeof addLinkSchema>) {
+  async function onSubmitFun(values: z.infer<typeof addLinkSchema>) {
     try {
       console.log(values);
-      addBookmarMutataion.mutate(values);
+      await addBookmarMutataion.mutateAsync(values);
+      toggleDialogClose(false)
       toast.success("Link added successfully!");
       form.reset();
       setSelectedTags([]);
@@ -133,12 +137,7 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
-      <Card
-        className={cn(
-          "border-0 ",
-          interFont.className
-        )}
-      >
+      <Card className={cn("border-0 ", interFont.className)}>
         <CardHeader className="text-center pb-6">
           <CardTitle
             className={cn(
@@ -293,7 +292,7 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
                           />
                           <Button
                             type="button"
-                            onClick={() => {
+                            onClick={async () => {
                               const foundTag = availableTags.find(
                                 (tag) =>
                                   tag.name.toLowerCase() ===
@@ -307,7 +306,7 @@ const AddLinkForm = ({ availableTags }: AddLinkFormProps) => {
                                 const dataTag = {
                                   name: tagInput.trim(),
                                 };
-                                addTagsMutation.mutateAsync(dataTag);
+                                await addTagsMutation.mutateAsync(dataTag);
                                 toast.success(
                                   `Tag "${tagInput.trim()}" Created. Please select from available tags.`
                                 );
