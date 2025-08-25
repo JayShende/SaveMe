@@ -254,7 +254,7 @@ const AddLinkForm = ({
                       </div>
                     </FormControl>
                     {watchedUrl && (
-                      <FormDescription>
+                      <div className="text-muted-foreground text-sm">
                         <div className="flex gap-x-2">
                           {watchedUrl && (
                             <div className="">
@@ -282,7 +282,7 @@ const AddLinkForm = ({
                             {detectBookmarkType(watchedUrl)} bookmark
                           </div>
                         </div>
-                      </FormDescription>
+                      </div>
                     )}
                     <FormMessage />
                   </FormItem>

@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 interface SideBarProps {
   username: string;
   email: string;
@@ -39,6 +40,7 @@ const navItems = [
 
 const SideBar = ({ username, email, image, initials }: SideBarProps) => {
   const pathname = usePathname();
+  console.log(image);
   return (
     <>
       <div className="w-[280px] h-full border-r bg-white sm:flex flex-col justify-between hidden ">
@@ -80,13 +82,27 @@ const SideBar = ({ username, email, image, initials }: SideBarProps) => {
           <PopoverTrigger>
             <div className=" bg-gray-50 h-15 hover:bg-gray-100 transition-all duration-150 rounded-lg m-3 flex items-center justify-between px-2">
               <div className="flex ">
-                <Avatar className="w-10 h-10">
+                {/* <Avatar className="w-10 h-10">
                   <AvatarImage
                     src={image || undefined}
                     alt={username || "user"}
                   />
                   <AvatarFallback>{initials}</AvatarFallback>
-                </Avatar>
+                </Avatar> */}
+                {image == undefined ? (
+                  <span className="bg-muted flex size-full items-center justify-center rounded-full">
+                    {initials}
+                  </span>
+                ) : (
+                  <Image
+                    src={image}
+                    alt="profile-pic"
+                    width={45}
+                    height={45}
+                    className="rounded-full ring-2 ring-gray-600 sm:w-11 w-8 sm:h-11 h-8 "
+                  />
+                )}
+
                 <div
                   className={cn(
                     "flex flex-col gap-y-1 ml-3 font-semibold",

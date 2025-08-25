@@ -23,6 +23,8 @@ Learnings
     - Types of Search
         - with backend (includes api and all)
         - Frontend Side Search
+6. Auth
+    - New Login Page and Showing Loader when the Process if Login is Going on
 
 To Do / Learn and then Implement
 1. Searching and Pagenation in Next JS 

@@ -13,8 +13,8 @@ import { useState } from "react";
 const BodyComponent = () => {
   const [search, setSearch] = useState("");
 
-  const isFetching = useIsFetching(); // number of active queries
-  const isMutating = useIsMutating(); // number of active mutations
+  const isFetching = useIsFetching({ queryKey: ["Get_Links"] }); // number of active queries
+  const isMutating = useIsMutating({mutationKey:["links_mutation"]}); // number of active mutations
   const isLoading = isFetching + isMutating > 0;
 
   const fetchAllLinks = useFetchAllLinks();

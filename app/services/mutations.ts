@@ -16,6 +16,7 @@ export function useAddLink() {
 
   return useMutation({
     mutationFn: (data: AddLinkFormData) => addLink(data),
+    mutationKey:["links_mutation"],
     onMutate: () => {
       console.log("Mutatted");
     },
@@ -40,6 +41,7 @@ export function useCreateTag() {
 
   return useMutation({
     mutationFn: (data: createTag) => createTag(data),
+    mutationKey:["tags_mutation"],
     onMutate: () => {
       console.log("Mutatted");
     },
