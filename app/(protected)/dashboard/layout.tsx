@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="w-screen h-screen flex gap-2">
       {/* LHS Sidebar */}
       <LHSSideBar />
-      <main className="flex-1 overflow-y-auto ">{children}</main>
+      <main className="flex-1 overflow-y-auto z-0">{children}</main>
 
       {/* RHS SidePane */}
     </div>

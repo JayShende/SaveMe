@@ -13,7 +13,7 @@ interface StatsCardsCompoenentProps {
 
 const StatsCardsCompoenent = (props: StatsCardsCompoenentProps) => {
   return (
-    <div className="grid grid-cols-4 gap-4 mx-6">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mx-6">
       <StatsCard
         lable="Total Links"
         value={props.total_links_count}

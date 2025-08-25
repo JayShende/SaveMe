@@ -8,7 +8,7 @@ import SearchBarFilter from "./searchBar-Filter";
 const SkeletonLoader = () => {
   return (
     <>
-      <div className="grid grid-cols-4 gap-4 mx-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mx-6">
         <StatsCard
           lable="Total Links"
           icon={PiLinkSimpleBold}
@@ -35,7 +35,7 @@ const SkeletonLoader = () => {
         />
       </div>
       <SearchBarFilter />
-      <div className="grid grid-cols-3 gap-3 mx-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mx-6">
         <SkeletonCard />
         <SkeletonCard />
         <SkeletonCard />

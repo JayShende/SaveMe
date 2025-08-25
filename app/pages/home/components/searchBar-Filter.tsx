@@ -8,9 +8,12 @@ const SearchBarFilter = ({
   search,
   setSearch,
 }: {
-  search: string;
-  setSearch: (value: string) => void;
+  search?: string;
+  setSearch?: (value: string) => void;
 }) => {
+  
+  if(!setSearch)
+    return null
   return (
     <Card className="grid grid-cols-4 mx-6 my-2 px-6">
       <Input

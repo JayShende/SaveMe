@@ -54,7 +54,7 @@ const StatsCard = ({ lable, value, icon: Icon, color,loading }: cardsProps) => {
         <div className={`${classes.bg} p-3 w-fit rounded-lg`}>
           <Icon className={`w-5 h-5 ${classes.text}`} />
         </div>
-        <div className={cn("flex flex-col font-medium", interFont.className)}>
+        <div className={cn("flex flex-col text-sm font-medium", interFont.className)}>
           <span className="text-zinc-600">{lable}</span>
           <span>{value}</span>
         </div>
