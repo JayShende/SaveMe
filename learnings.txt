@@ -36,5 +36,6 @@ Before Production
     - Make Tags Functional
     - add the Home Page
     - migration Script on build command
-    - Seleton for Indivdual Pages
+    - Seleton for Indivdual Pages ✅
     - add remote NeonDB Database
+    - app meta Data Previw desc etc 

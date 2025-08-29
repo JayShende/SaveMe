@@ -11,9 +11,11 @@ const WebUrl = () => {
 
   const webLinks = useGetWebLinks();
   if (webLinks.isPending) {
-    <div className="pt-28 sm:mt-14">
-      <SkeletonLoader showCards={false} />
-    </div>;
+    return (
+      <div className="pt-28 sm:mt-14">
+        <SkeletonLoader showCards={false} />
+      </div>
+    );
   }
 
   if (webLinks.isError) {

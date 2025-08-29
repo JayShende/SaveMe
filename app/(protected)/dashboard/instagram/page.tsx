@@ -12,9 +12,11 @@ const Instagram = () => {
 
   const instagramLinks = useGetInstagramLinks();
   if (instagramLinks.isPending) {
-    <div className="pt-28 sm:mt-14">
-      <SkeletonLoader showCards={false} />
-    </div>;
+    return (
+      <div className="pt-28 sm:mt-14">
+        <SkeletonLoader showCards={false} />
+      </div>
+    );
   }
 
   if (instagramLinks.isError) {
@@ -27,6 +29,7 @@ const Instagram = () => {
       link.title?.toLowerCase().includes(search.toLowerCase()) ||
       link.description?.toLowerCase().includes(search.toLowerCase())
   );
+
   return (
     <>
       <CommmonHeader pageName="Instagram" />
