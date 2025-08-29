@@ -5,10 +5,16 @@ import { FaGlobe, FaXTwitter } from "react-icons/fa6";
 import { LuInstagram } from "react-icons/lu";
 import SearchBarFilter from "./searchBar-Filter";
 
-const SkeletonLoader = () => {
+interface SkeletonLoaderProps {
+  showCards: boolean;
+}
+
+const SkeletonLoader = ({
+  showCards
+}:SkeletonLoaderProps) => {
   return (
     <>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mx-6">
+     {showCards && <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mx-6">
         <StatsCard
           lable="Total Links"
           icon={PiLinkSimpleBold}
@@ -33,7 +39,7 @@ const SkeletonLoader = () => {
           color="purple"
           loading={true}
         />
-      </div>
+      </div>}
       <SearchBarFilter />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mx-6">
         <SkeletonCard />

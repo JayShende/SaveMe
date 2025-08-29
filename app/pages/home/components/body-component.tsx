@@ -21,7 +21,7 @@ const BodyComponent = () => {
   const getAllTags = useGetAllTags();
 
   if (fetchAllLinks.isPending || getAllTags.isPending || isLoading) {
-    return <SkeletonLoader />;
+    return <SkeletonLoader showCards={true} />;
   }
 
   if (fetchAllLinks.isError || getAllTags.isError) {

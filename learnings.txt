@@ -30,3 +30,11 @@ To Do / Learn and then Implement
 1. Searching and Pagenation in Next JS 
     Refrence -> https://strapi.io/blog/epic-next-js-14-tutorial-part-8-search-and-pagination-in-next-js?utm_campaign=DevRel%20Epic%20Next%20Course&utm_source=epic-next-8-post
     
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before Production
+    - Make Tags Functional
+    - add the Home Page
+    - migration Script on build command
+    - Seleton for Indivdual Pages
+    - add remote NeonDB Database

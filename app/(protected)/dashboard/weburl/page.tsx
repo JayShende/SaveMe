@@ -2,6 +2,7 @@
 import CommmonHeader from "@/app/pages/home/components/common-header";
 import HomePageContents from "@/app/pages/home/components/homepage-contents";
 import SearchBarFilter from "@/app/pages/home/components/searchBar-Filter";
+import SkeletonLoader from "@/app/pages/home/components/skeleton-loader";
 import { useGetWebLinks } from "@/app/services/queries";
 import { linksProps } from "@/app/types/link";
 import { useState } from "react";
@@ -10,7 +11,9 @@ const WebUrl = () => {
 
   const webLinks = useGetWebLinks();
   if (webLinks.isPending) {
-    return <div>loading</div>;
+    <div className="pt-28 sm:mt-14">
+      <SkeletonLoader showCards={false} />
+    </div>;
   }
 
   if (webLinks.isError) {
@@ -25,7 +28,7 @@ const WebUrl = () => {
   );
   return (
     <>
-     <CommmonHeader pageName="Web URL"/>
+      <CommmonHeader pageName="Web URL" />
       <SearchBarFilter search={search} setSearch={setSearch} />
       <HomePageContents links={filteredLinks} />
     </>

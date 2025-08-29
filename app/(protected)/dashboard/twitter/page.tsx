@@ -2,7 +2,8 @@
 import CommmonHeader from "@/app/pages/home/components/common-header";
 import HomePageContents from "@/app/pages/home/components/homepage-contents";
 import SearchBarFilter from "@/app/pages/home/components/searchBar-Filter";
-import { useGetInstagramLinks, useGetTwitterLinks } from "@/app/services/queries";
+import SkeletonLoader from "@/app/pages/home/components/skeleton-loader";
+import { useGetTwitterLinks } from "@/app/services/queries";
 import { linksProps } from "@/app/types/link";
 import { useState } from "react";
 const Twitter = () => {
@@ -10,7 +11,11 @@ const Twitter = () => {
 
   const twitterLinks = useGetTwitterLinks();
   if (twitterLinks.isPending) {
-    return <div>loading</div>;
+    return (
+      <div className="pt-28 sm:mt-14">
+        <SkeletonLoader showCards={false} />
+      </div>
+    );
   }
 
   if (twitterLinks.isError) {
@@ -25,7 +30,7 @@ const Twitter = () => {
   );
   return (
     <>
-     <CommmonHeader pageName="Twitter"/>
+      <CommmonHeader pageName="Twitter" />
       <SearchBarFilter search={search} setSearch={setSearch} />
       <HomePageContents links={filteredLinks} />
     </>
