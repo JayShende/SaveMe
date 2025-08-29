@@ -1,5 +1,4 @@
 import { LoginForm } from "@/components/login-form"
-import LoginComponent from "@/components/login_component_1"
 import { Bookmark } from "lucide-react"
 
 

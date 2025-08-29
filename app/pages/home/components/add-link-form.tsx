@@ -24,7 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { linkTypes } from "@/app/types/link";
+
 import {
   FaLink,
   FaTags,
@@ -340,7 +340,7 @@ const AddLinkForm = ({
               <FormField
                 control={form.control}
                 name="tags"
-                render={({ field }) => (
+                render={() => (
                   <FormItem>
                     <FormLabel className="text-sm md:text-base font-semibold text-gray-700 flex items-center gap-2">
                       <FaTags className="w-4 h-4 text-emerald-500" />

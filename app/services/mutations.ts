@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { linksProps } from "../types/link";
 import { addLink, createTag, deleteLink, deleteLinkInterface } from "./api";
 
 // Interface for form submission data

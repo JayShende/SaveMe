@@ -14,7 +14,6 @@ import { MdOutlineEmail } from "react-icons/md";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import BottomPane from "./sideBar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Popover,

@@ -1,9 +1,6 @@
-import TopBar from "../components/top-bar";
 import { auth } from "@/auth";
 import HeaderHomePage from "./components/header";
-import CardsCompoenent from "./components/CardsComponent";
-import SearchBarFilter from "./components/searchBar-Filter";
-import HomePageContents from "./components/homepage-contents";
+
 import BodyComponent from "./components/body-component";
 const HomePage = async () => {
   const session = await auth();

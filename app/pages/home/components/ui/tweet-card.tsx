@@ -2,32 +2,21 @@ import { linksProps, linkTypes } from "@/app/types/link";
 import { ClientTweetCard } from "@/components/magicui/client-tweet-card";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+
 import { dmSansFont, openSansFont, robotoMonoFont } from "@/fonts/fonts";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+
 import { FaCopy } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+
 import { useState } from "react";
 import InstagramPreview from "./instagram-card";
 import WebUrlCard from "./weburl-card";

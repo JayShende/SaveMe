@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { dmSansFont, openSansFont, robotoMonoFont } from "@/fonts/fonts";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import { FaCopy } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { FaGlobe } from "react-icons/fa";

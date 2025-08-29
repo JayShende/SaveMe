@@ -11,7 +11,7 @@ import {
 import { geistFont } from "@/fonts/fonts";
 import { cn } from "@/lib/utils";
 
-import { House, LogOut,Bookmark } from "lucide-react";
+import { House, LogOut, Bookmark } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 interface TopBarProps {
@@ -21,13 +21,17 @@ interface TopBarProps {
   initials: string;
 }
 
-const TopBar = ({ username, email, image, initials }: TopBarProps) => {
+const TopBar = ({ username, image, initials }: TopBarProps) => {
   return (
     <div className=" w-full  ">
       <div className="flex justify-between items-center mx-10">
         <div className="flex items-center gap-x-2">
-            <span><Bookmark/></span>
-            <span className={cn("font-semibold text-xl",geistFont.className)}>Bookmark Me</span>
+          <span>
+            <Bookmark />
+          </span>
+          <span className={cn("font-semibold text-xl", geistFont.className)}>
+            Bookmark Me
+          </span>
         </div>
 
         <div className="flex items-center space-x-2">

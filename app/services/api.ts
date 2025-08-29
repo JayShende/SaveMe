@@ -1,5 +1,4 @@
 import axios from "axios";
-import { linksProps } from "../types/link";
 
 export const fetchAllLinks = async () => {
   const response = await axios({

@@ -11,11 +11,18 @@ import {
 } from "@/components/ui/card";
 import { dmSansFont, openSansFont, robotoMonoFont } from "@/fonts/fonts";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import { FaCopy } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import RemoveCard from "./remove-card";
+
+interface InstagramEmbedGlobal {
+  instgrm?: {
+    Embeds?: {
+      process?: () => void;
+    };
+  };
+}
 
 interface InstagramPreviewProps {
   url: string;
@@ -32,7 +39,7 @@ const InstagramPreview = ({
   description,
   tags,
   createdAt,
-  linkId
+  linkId,
 }: InstagramPreviewProps) => {
   const [clickCopy, setClickCopy] = useState(false);
 
@@ -59,7 +66,7 @@ const InstagramPreview = ({
       document.body.appendChild(script);
     } else {
       // reprocess embeds when component updates
-      (window as any).instgrm?.Embeds?.process();
+      (window as unknown as InstagramEmbedGlobal).instgrm?.Embeds?.process?.();
     }
   }, [url]);
 

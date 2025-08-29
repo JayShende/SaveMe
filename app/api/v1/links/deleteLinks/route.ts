@@ -31,14 +31,14 @@ export async function POST(req: NextRequest) {
 
   // Proceed with the Deletion of The Link
 
-  const response = await client.links.delete({
+  await client.links.delete({
     where: {
       userId: userId,
       linkId: linkId,
     },
   });
   return NextResponse.json({
-    status:"Success",
-    message:"Link Deleted SuccessFull"
-  })
+    status: "Success",
+    message: "Link Deleted SuccessFull",
+  });
 }
