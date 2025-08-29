@@ -1,9 +1,35 @@
+"use client";
+import CommmonHeader from "@/app/pages/home/components/common-header";
+import HomePageContents from "@/app/pages/home/components/homepage-contents";
+import SearchBarFilter from "@/app/pages/home/components/searchBar-Filter";
+import { useGetWebLinks } from "@/app/services/queries";
+import { linksProps } from "@/app/types/link";
+import { useState } from "react";
 const WebUrl = () => {
+  const [search, setSearch] = useState("");
+
+  const webLinks = useGetWebLinks();
+  if (webLinks.isPending) {
+    return <div>loading</div>;
+  }
+
+  if (webLinks.isError) {
+    return <span>Error in fetching Links </span>;
+  }
+
+  const filteredLinks = webLinks.data.filter(
+    (link: linksProps) =>
+      link.url.toLowerCase().includes(search.toLowerCase()) ||
+      link.title?.toLowerCase().includes(search.toLowerCase()) ||
+      link.description?.toLowerCase().includes(search.toLowerCase())
+  );
   return (
-    <div>
-    WebURl
-    </div>
-  )
+    <>
+     <CommmonHeader pageName="Web URL"/>
+      <SearchBarFilter search={search} setSearch={setSearch} />
+      <HomePageContents links={filteredLinks} />
+    </>
+  );
 };
 
 export default WebUrl;
