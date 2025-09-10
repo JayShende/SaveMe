@@ -39,7 +39,6 @@ const navItems = [
 
 const SideBar = ({ username, email, image, initials }: SideBarProps) => {
   const pathname = usePathname();
-  console.log(image);
   return (
     <>
       <div className="w-[280px] h-full border-r bg-white sm:flex flex-col justify-between hidden ">

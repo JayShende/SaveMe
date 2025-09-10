@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Menu, X, Bookmark } from 'lucide-react';
+import Link from 'next/link';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,12 +47,12 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a
+            <Link
               href="#get-started"
               className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg text-white bg-gradient-to-r from-emerald-500 to-green-400 hover:from-emerald-600 hover:to-green-500 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </div>

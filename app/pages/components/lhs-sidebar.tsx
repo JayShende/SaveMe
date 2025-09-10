@@ -31,6 +31,7 @@ const LHSSideBar = async () => {
   if (initials == null || initials == undefined) {
     return;
   }
+  // console.log(session);
   return (
     <SideBar username={name} email={email} image={image} initials={initials} />
   );

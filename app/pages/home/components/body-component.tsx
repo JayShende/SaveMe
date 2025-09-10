@@ -11,6 +11,7 @@ import { useIsFetching, useIsMutating } from "@tanstack/react-query";
 import { useState } from "react";
 
 const BodyComponent = () => {
+  
   const [search, setSearch] = useState("");
 
   const isFetching = useIsFetching({ queryKey: ["Get_Links"] }); // number of active queries

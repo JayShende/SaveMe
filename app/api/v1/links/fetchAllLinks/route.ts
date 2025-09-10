@@ -1,8 +1,7 @@
 import { client } from "@/app/lib";
 import { auth } from "@/auth";
-import {  NextResponse } from "next/server";
-
-export async function GET() {
+import { NextRequest, NextResponse } from "next/server";
+export async function GET(req: NextRequest) {
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({
@@ -15,8 +14,8 @@ export async function GET() {
     where: {
       userId: userId,
     },
-    include:{
-      tags:true
+    include: {
+      tags: true,
     },
     orderBy: {
       createdAt: "desc",
