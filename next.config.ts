@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 module.exports = {
   images: {
-    domains: ["avatars.githubusercontent.com", "lh3.googleusercontent.com","images.pexels.com"],
+    domains: [
+      "avatars.githubusercontent.com",
+      "lh3.googleusercontent.com",
+      "images.pexels.com",
+    ],
   },
 };
