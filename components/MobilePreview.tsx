@@ -31,7 +31,7 @@ const MobilePreview = () => {
 
             <p className="mt-6 max-w-3xl text-xl text-gray-600 leading-relaxed">
               BookmarkMe works seamlessly across all your devices. Whether
-              you're on your phone, tablet, or desktop, your saved links are
+              you&apos;re on your phone, tablet, or desktop, your saved links are
               always just a tap away with our responsive design.
             </p>
 
